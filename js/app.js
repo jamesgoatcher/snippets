@@ -10,12 +10,12 @@ root = './', // for production
 main = document.querySelector('#container'),
 refresh = document.querySelector('#refresh'),
 regex = {};
-regex.codeRed = /\breturn|\bif|\belse|\b(for\s)|\bwhile|\bswitch|\bcase|\bdefault|\bbreak|\bin\s|\bof|\bnew|\btypeof|\bthrow|\bif|(=\s)|(==)|(===)|(\s<\s)|(\s>\s)|\+|\^|&|\?|\*|!|\:|\.|\|/gm;
-regex.codeBlue = /\bMath|\bObject|\bdecodeURIComponent|\bencodeURIComponent|\bbtoa|\batob|\bconcat|\bwindow|\bjoin|\btoString|\bpush|=>|\bconsole|\bdocument|\bconst\s|\blet|\bvar|\bsetTimeout|\bfunction|\bindexOf|\bforEach|\bincludes|\bquerySelector|\bquerySelectorAll|\bslice|\breplace|\bmatch|\bmap|\breduce|\bremove|\bcontains/gm;
+regex.codeRed = /\breturn|\bif|\belse|\b(for\s)|\bwhile|\bswitch|\bcase|\bdefault|\bbreak|\bin\s|\bnew|\btypeof|\bthrow|\bif|(=\s)|(==)|(===)|(\s<\s)|(\s>\s)|\+|\^|&|\?|\*|!|\:|\.|\|/gm;
+regex.codeBlue = /\bMath|\bObject|\bdecodeURIComponent|\bencodeURIComponent|\bbtoa|\batob|\bconcat|\bwindow|\bjoin|\btoString|\bpush|=>|\bconsole|\bdocument|\bconst\s|\blet|\bvar\s|\bsetTimeout|\bfunction|\bindexOf|\bforEach|\bincludes|\bquerySelector|\bquerySelectorAll|\bslice|\breplace|\bmatch|\bmap|\breduce|\bremove|\bcontains/gm;
 regex.codePurple = /\d|(\\n)|null|undefined|true|false/gm;
 regex.codeGray = /(\s\/\/\s.*)/gm;
 regex.codeOrange = /\bthis/gm;
-regex.codeGreen = /(const\s[a-zA-Z]+\s)|(var evalNavigator)/gm;
+regex.codeGreen = /(const\s[a-zA-Z]+\s)|(evalNavigator)/gm;
 
 /*===========================
 =            APP            =

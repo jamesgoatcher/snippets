@@ -47,9 +47,14 @@ body {
 	--code_green: #a6e22c;
 	--code_purple: #a780ff;
 
+	width: 100vw;
+	height: 100vh;
 	font-family: 'Muli', sans-serif;
 	font-size: 16px;
-	padding: 2rem;
+	padding: 2vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	position: relative;
 }
 
@@ -104,15 +109,15 @@ pre {
 
 /*APP*/
 #container {
-	margin: 0 auto;
+	width: 50vw;
 }
 
 .snippets {
 	display: grid;
-	grid-template-columns: 200px 200px 200px;
-	grid-template-rows: 200px 200px 200px;
-	grid-column-gap: 1rem;
-	grid-row-gap: 1rem;
+	grid-template-columns: 14vw 14vw 14vw;
+	grid-template-rows: 14vw 14vw 14vw;
+	grid-column-gap: 1vw;
+	grid-row-gap: 1vw;
 	justify-content: center;
 }
 
@@ -122,6 +127,7 @@ pre {
 		align-items: center;
 		justify-content: center;
 		text-align: center;
+		font-size: 1.5vw;
 		padding: 1rem;
 		border: 1px solid var(--text_color);
 		border-radius: 3px;
@@ -139,26 +145,44 @@ pre {
 	}
 
 .snippet__display {
-	margin-top: 2rem;
+	
 }
 
-	.snippet__btn {
-		width: 10rem;
-		height: 2rem;
-		border-radius: 3px;
-		border: 1px solid var(--text_color);
-		color: var(--text_color);
-		font-family: 'Muli', sans-serif;
-		outline: none;
-		cursor: pointer;
-	} .snippet__btn:hover {
-		background-color: var(--text_color);
-		color: var(--text_hover);
+	.snippet__actions {
+		display: flex;
+		justify-content: space-between;
 	}
 
+		.snippet__btn {
+			width: 10vw;
+			height: 2vw;
+			font-size: 0.8vw;
+			border-radius: 3px;
+			border: 1px solid var(--text_color);
+			color: var(--text_color);
+			font-family: 'Muli', sans-serif;
+			outline: none;
+			cursor: pointer;
+		} .snippet__btn:hover {
+			background-color: var(--text_color);
+			color: var(--text_hover);
+		}
+
+		#copy.active {
+			background-color: #444;
+			color: #fff;
+		}
+
+		#copy.active_error {
+			background-color: crimson;
+			color: #fff;
+		}
+
 	.snippet__code {
-		margin-top: 1rem;
+		height: 41vw;
+		margin-top: 1vw;
 		padding: 2rem;
+		font-size: 1vw;
 		background-color: var(--code_bg);
 		color: var(--code_text);
 		border-radius: 3px;
@@ -166,16 +190,6 @@ pre {
 	} .snippet__code > pre {
 		cursor: text;
 	}
-
-#copy.active {
-	background-color: #444;
-	color: #fff;
-}
-
-#copy.active_error {
-	background-color: crimson;
-	color: #fff;
-}
 
 /*ANIMATIONS*/
 @keyframes flicker {
