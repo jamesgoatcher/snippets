@@ -75,6 +75,14 @@ pre {
 	font-weight: bolder;
 }
 
+.italics {
+	font-style: italic;
+}
+
+.mb-1 {
+	margin-bottom: 1vw;
+}
+
 .vis_hid {
 	visibility: hidden;
 }
@@ -107,9 +115,15 @@ pre {
 	color: var(--code--yellow);
 }
 
+.capitalize {
+	text-transform: capitalize;
+}
+
 /*APP*/
 #container {
 	width: 50vw;
+	position: relative;
+	overflow: hidden;
 }
 
 .snippets {
@@ -119,6 +133,11 @@ pre {
 	grid-column-gap: 1vw;
 	grid-row-gap: 1vw;
 	justify-content: center;
+	-webkit-transition: opacity 300ms;
+	transition: opacity 300ms;
+} .snippets.inactive {
+	opacity: 0.6;
+	pointer-events: none;
 }
 
 	.snippet__select,
@@ -145,7 +164,11 @@ pre {
 	}
 
 .snippet__display {
-	
+	-webkit-transition: opacity 300ms;
+	transition: opacity 300ms;
+} .snippet__display.inactive {
+	opacity: 0.6;
+	pointer-events: none;
 }
 
 	.snippet__actions {
@@ -157,6 +180,7 @@ pre {
 			width: 10vw;
 			height: 2vw;
 			font-size: 0.8vw;
+			background-color: var(--bg_color);
 			border-radius: 3px;
 			border: 1px solid var(--text_color);
 			color: var(--text_color);
@@ -181,7 +205,7 @@ pre {
 	.snippet__code {
 		height: 41vw;
 		margin-top: 1vw;
-		padding: 2rem;
+		padding: 1rem;
 		font-size: 1vw;
 		background-color: var(--code_bg);
 		color: var(--code_text);
@@ -189,6 +213,55 @@ pre {
 		overflow-x: scroll;
 	} .snippet__code > pre {
 		cursor: text;
+	}
+
+	.demo__container {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 70%;
+		padding: 1vw;
+		overflow: scroll;
+		background-color: var(--bg_color);
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+		border: 1px solid var(--text_color);
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+		-webkit-transition: transform 300ms;
+		transition: transform 300ms;
+	} .demo__container.active {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+		.demo__container > header {
+			font-size: 2vw;
+		}
+
+		.demo__container > header,
+		.demo__container > div,
+		.demo__container > button {
+			margin-bottom: 1vw;
+			display: block;
+		}
+
+		.demo__output {
+			background-color: var(--code_bg);
+			color: var(--text_hover);
+			overflow: scroll;
+			max-height: 13vw;
+			padding: 1vw;
+			border-radius: 3px;
+		}
+
+	.demo__close {
+		position: absolute;
+		top: 1vw;
+		right: 1vw;
+		user-select: none;
+		cursor: pointer;
 	}
 
 /*ANIMATIONS*/

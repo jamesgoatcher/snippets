@@ -1,6 +1,7 @@
 'use strict';
 
 import { snippet_repo } from './repo.js';
+import { loadDemoHTML } from './demo_create.js';
 
 /*==============================
 =            GLOBAL            =
@@ -11,7 +12,7 @@ main = document.querySelector('#container'),
 refresh = document.querySelector('#refresh'),
 regex = {};
 regex.codeRed = /\breturn|\bif|\belse|\b(for\s)|\bwhile|\bswitch|\bcase|\bdefault|\bbreak|\bin\s|\bnew|\btypeof|\bthrow|\bif|(=\s)|(==)|(===)|(\s<\s)|(\s>\s)|\+|\^|&|\?|\*|!|\:|\.|\|/gm;
-regex.codeBlue = /\bMath|\bObject|\bdecodeURIComponent|\bencodeURIComponent|\bbtoa|\batob|\bconcat|\bwindow|\bjoin|\btoString|\bpush|=>|\bconsole|\bdocument|\bconst\s|\blet|\bvar\s|\bsetTimeout|\bfunction|\bindexOf|\bforEach|\bincludes|\bquerySelector|\bquerySelectorAll|\bslice|\breplace|\bmatch|\bmap|\breduce|\bremove|\bcontains/gm;
+regex.codeBlue = /\bMath|\bJSON|\bObject|\bdecodeURIComponent|\bencodeURIComponent|\bbtoa|\batob|\bconcat|\bwindow|\bjoin|\btoString|\bpush|=>|\bconsole|\bdocument|\bconst\s|\blet|\bvar\s|\bsetTimeout|\bfunction|\bindexOf|\bforEach|\bincludes|\bquerySelector|\bquerySelectorAll|\bslice|\breplace|\bmatch|\bmap|\breduce|\bremove|\bcontains/gm;
 regex.codePurple = /\d|(\\n)|null|undefined|true|false/gm;
 regex.codeGray = /(\s\/\/\s.*)/gm;
 regex.codeOrange = /\bthis/gm;
@@ -28,7 +29,9 @@ refreshPage = () => {
 homeInit = () => {
 	const
 	snips = Array.from(document.querySelectorAll('.snippet__select')),
-	copy = document.querySelector('#copy');
+	copy = document.querySelector('#copy'),
+	download = document.querySelector('#download'),
+	demo = document.querySelector('#demo');
 
 	for (let i = 0; i < snippet_repo.length; i++) {
 		snips[i].dataset.key = snippet_repo[i].key;
@@ -38,6 +41,8 @@ homeInit = () => {
 	}
 	// Add event listeners
 	copy.addEventListener('click', copyToClipboard.bind(this, copy), false);
+	download.addEventListener('click', downloadSnippetsHandler.bind(this, 'pretty', false));
+	demo.addEventListener('click', demoPageHandler.bind(this, snips), false);
 },
 
 toggleActiveSnippet = (snips) => {
@@ -118,6 +123,39 @@ regexForCodeColors = (snippet) => {
 	snippetOutput = snippetOutput.replace(regex.codeGray, `<span class="code--gray">$&</span>`);
 
 	return snippetOutput;
+},
+
+downloadSnippetsHandler = (option) => {
+	let snippetLibrary = new String;
+	// Loop through all and give 2 line breaks between fns
+	for (let snip in snippet_repo) {
+		snippetLibrary += `/* START - ${snippet_repo[snip].key} */\n${snippet_repo[snip].code}\n/* END - ${snippet_repo[snip].key} */\n \n`;
+	}
+
+	if (option == 'pretty') {
+		// Create, write, and save file
+		saveToFile(snippetLibrary);
+	}
+},
+
+saveToFile = (library) => {
+	let downloadEl = document.createElement('a');
+	// Content
+  downloadEl.setAttribute('href', `data:text/javascript;charset=utf-8,${library}`);
+  downloadEl.setAttribute('download', 'jpg_snippets.js');
+  downloadEl.style.display = 'none';
+  // Write to page
+  document.body.appendChild(downloadEl);
+  // Select the invisible element
+  downloadEl.click();
+  // Remove it
+  document.body.removeChild(downloadEl);
+},
+
+demoPageHandler = (snipsArr) => {
+	const activeSnip = snipsArr.filter( snip => snip.classList.contains('active'));
+	// demo_create.js
+	loadDemoHTML(activeSnip[0].dataset.key);
 },
 
 displayCode = (snippet) => {
@@ -245,4 +283,4 @@ document.onreadystatechange = function () {
 	}
 };
 
-// export { root, util, appStorageArray, validateInputsHaveValues, removeValidationError, validationHandler };
+export { root, main };

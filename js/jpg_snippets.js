@@ -1,14 +1,5 @@
-/*=============================
-=           SNIPPETS          =
-=============================*/
-const
-snippet_repo = [
-	// Random Password Generator
-	{ 
-		name: 'Random Password Generator',
-		key: 'randomPassword',
-		code:
-`  // Attach event listener to an input and pass values
+/* START - randomPassword */
+  // Attach event listener to an input and pass values
   const asciiKeyCodes = (low, high) => {
     let array = [];
     // Load keycode values using loop
@@ -42,15 +33,12 @@ snippet_repo = [
   asciiObj.lowercaseChars = asciiKeyCodes(97, 122);
   asciiObj.uppercaseChars = asciiKeyCodes(65, 90);
   asciiObj.numberChars = asciiKeyCodes(48, 57);
-  asciiObj.symbolChars = asciiKeyCodes(33, 47).concat(asciiKeyCodes(58, 64));`
-	},
-	// Quick Sort Arrays of Numbers
-	{
-		name: 'Quick Sort Array of Numbers',
-		key: 'quickSort',
-		code:
-`  const quickSort = (input) => {
-    // If only one value array, output that
+  asciiObj.symbolChars = asciiKeyCodes(33, 47).concat(asciiKeyCodes(58, 64));
+/* END - randomPassword */
+ 
+/* START - quickSort */
+  const quickSort = (input) => {
+    // If only one value in array, output that
     if (input.length < 2) {
       return input;
     }
@@ -69,14 +57,11 @@ snippet_repo = [
     }
     // Recursively sort left to pivot and right to pivot using spread operator
     return [ ...quickSort(left), pivot, ...quickSort(right) ];
-  }`
-	},
-	// Deep Clone
-	{
-		name: 'Deep Clone Object',
-		key: 'deepClone',
-		code:
-`  // Create external object copies instead of references
+  }
+/* END - quickSort */
+ 
+/* START - deepClone */
+  // Create external object copies instead of references
   const deepClone = (obj) => {
     // Check absent data
     if (obj === null) return null;
@@ -95,30 +80,25 @@ snippet_repo = [
     : Array.isArray(obj)
     ? Array.from(obj)
     : clone;
-  };`
-	},
-	// User Agent and OS Evaluator
-	{
-		name: 'Evaluate User Browser & OS',
-		key: 'evalUA',
-		code:
-`  // Legacy JS compatible due to IE browsers 
+  };
+/* END - deepClone */
+ 
+/* START - evalUA */
+  // Legacy JS compatible due to IE browsers 
   var evalNavigator = function () {
     var userNavigator = {
     	// IE, Edge, Opera, Firefox, Safari, Chrome, other
       ua: (function () {
         var ua = navigator.userAgent;
         var uaRegex = {
-          internet_explorer: /(?:\\b(MS)?IE\\s+|\\bTrident\\/7\\.0;.*\\s+rv:)(\\d+)/,
-          edge: /\\bEdge\\/\\d+/,
-          opera: /\\sOPR\\//,
-          firefox: /\\sFirefox\\//
+          internet_explorer: /(?:\b(MS)?IE\s+|\bTrident\/7\.0;.*\s+rv:)(\d+)/,
+          edge: /\bEdge\/\d+/,
+          opera: /\sOPR\//,
+          firefox: /\sFirefox\//
         };
         // Using result with mobile results yields stronger eval
         for (var reg in uaRegex) {
-          if (ua.match(uaRegex[reg]) != null && ua.match(uaRegex[reg]).length > 0) {
-            return reg;
-          }
+          if (ua.match(uaRegex[reg]) != null && ua.match(uaRegex[reg]).length > 0) return reg;
         }
         // Safari and Chrome must come after regex eval
         var
@@ -153,66 +133,53 @@ snippet_repo = [
     };
     // IIFE produce readable answers contained within an object
     return userNavigator;
-  };`
-	},
-	// Random Number Generator, option to Dice Roll
-	{
-		name: 'Random Number Generator',
-		key: 'randomNumber',
-		code:
-`  const randomNumberGenerator = (limit, limiter) => {
-    // Limiter reverts to zero when array index needed; real nums need one
+  };
+/* END - evalUA */
+ 
+/* START - randomNumber */
+  const randomNumberGenerator = (limit, limiter) => {
+    // Make limiter zero as array indices, otherwise use one
     return Math.floor( (Math.random() * limit) + (limiter || 0) );
-  };`
-	},
-	// Encode/Decode values to/from Base64
-	{
-		name: 'Encode/Decode URI & Base64',
-		key: 'encodeDecode',
-		code:
-`  // Options are {fns, uri, json} as {string, boolean, boolean}
+  };
+/* END - randomNumber */
+ 
+/* START - encodeDecode */
+  // Pass fns, uri, and json options as key value pairs with string or boolean values
   const encodeDecode = (data, options) => {
     // uri option has boolean value
     if (options.fns === 'encode') {
       // json check
-      data = 
       options.json 
-      ? JSON.stringify(data)
-      : data
+      ? data = JSON.stringify(data)
+      : data = data
       // uri check
-      data =
       options.uri
-      ? encodeURIComponent(data)
-      : data
-      // bTOa
+      ? data = encodeURIComponent(data)
+      : data = data
+      // btoa
       return data = window.btoa(data);
     }
     // uri and json have boolean values
     if (options.fns === 'decode') {
-      // aTOb
+      // atob
       data = window.atob(data);
       // uri check
-      data =
       options.uri
       ? data = decodeURIComponent(data)
-      : data
+      : data = data
       // json check
-      data = 
       options.json
-      ? JSON.parse(data)
-      : data
+      ? data = JSON.parse(data)
+      : data = data
       return data;
     }
     // Encode and Decode must be defined
     throw 'Formatting error';
-  };`
-	},
-	// Get URL Parameters
-	{
-		name: 'Extract URL Parameters',
-		key: 'urlParams',
-		code:
-`  // Extract key value pairs from params within url string
+  };
+/* END - encodeDecode */
+ 
+/* START - urlParams */
+  // Extract key value pairs from params within url string
   const getURLParameters = (url) => {
     // Regex to find param chars and call method
     return (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce( (acc, val) => {
@@ -221,14 +188,11 @@ snippet_repo = [
         (acc[val.slice(0, val.indexOf('='))] = val.slice(val.indexOf('=') + 1)
       ), acc)
     }, {});
-  };`
-	},
-	// JSON to CSV
-	{
-		name: 'JSON to CSV',
-		key: 'jsonToCSV',
-		code:
-`  // arr is array of objects; columns is array of strings column headers
+  };
+/* END - urlParams */
+ 
+/* START - jsonToCSV */
+  // arr is array of objects; columns is array of strings column headers
   const jsonToCSV = (arr, columns) => {
     // Delimit column headers with commas; add the json array to it
     return [columns.join(',')].concat(arr.map( (obj) => {
@@ -239,9 +203,8 @@ snippet_repo = [
         "'" + (!obj[key] ? '' : obj[key]) + "'";
       }, '');
     // Reconnect as string with each line
-    })).join('\\n');
-  };`
-	}
-];
+    })).join('\n');
+  };
+/* END - jsonToCSV */
 
-export { snippet_repo };
+export { asciiKeyCodes, generatePassword, asciiObj, quickSort, deepClone, evalNavigator, randomNumberGenerator, encodeDecode, getURLParameters, jsonToCSV };
