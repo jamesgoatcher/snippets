@@ -62,14 +62,20 @@ toggleActiveSnippet = (snips) => {
 copyToClipboard = (copyEl) => {
 	const codeSnippet = document.querySelector('.snippet__code > pre');
 
-	navigator.clipboard.writeText(codeSnippet.innerText).then( () => {
-		// Copy action animation
+	try {
+		let hiddenSnippet = document.createElement('input');
+		hiddenSnippet.style = 'position: absolute; left: -2000px; top: -2000px;';
+	  hiddenSnippet.value = codeSnippet.innerText;;
+	  document.body.appendChild(hiddenSnippet);
+	  hiddenSnippet.select();
+	  hiddenSnippet.setSelectionRange(0, 99999); // mobile support
+	  document.execCommand('copy');
+	  document.body.removeChild(hiddenSnippet);
+
 		copyToClipboardAnim(copyEl, 'success');
-	}, function(error) {
-	  // Error handler
-	  copyToClipboardAnim(copyEl, 'error');
-	  throw 'Clipboard copy failed - ' + error;
-	});
+	} catch (error) {
+		throw 'Clipboard copy failed - ' + error;
+	}
 },
 
 copyToClipboardAnim = (copyEl, fns) => {
