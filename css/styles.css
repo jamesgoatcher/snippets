@@ -237,7 +237,11 @@ pre {
 	}
 
 		.demo__container > header {
-			font-size: 2vw;
+			font-size: 2.2vw;
+		}
+
+		.demo__container > div {
+			font-size: 1.5vw;
 		}
 
 		.demo__container > header,
@@ -269,29 +273,83 @@ pre {
 
 }
 
-
-/*BREAKPOINTS*/
-@media only screen and (max-width: 1450px) {
-
-}
-
-@media only screen and (max-width: 1200px) {
-
-}
-
-@media only screen and (max-width: 1000px) {
-
-}
-
 /*MOBILE SIZE*/
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 767px) {
+	body {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 
+	.snippets {
+		grid-template-columns: 28vw 28vw 28vw;
+		grid-template-rows: 12vw 12vw 12vw;
+		grid-column-gap: 3vw;
+		grid-row-gap: 3vw;
+	}
+
+		.snippet__select,
+		.snippet__refresh {
+			font-size: 2.2vw;
+		}
+
+		.snippet__btn {
+			width: 23vw;
+			height: 4vw;
+			font-size: 2vw;
+		}
+
+		.snippet__actions {
+			line-height: 1;
+		}
+
+		.snippet__code {
+			height: 64vw;
+			font-size: 1.7vw;
+			margin-top: 2vw;
+		}
+
+	#container {
+		width: 90vw;
+		margin-top: 2vw;
+	}
+
+		.demo__container > header {
+			font-size: 4.2vw;
+		}
+
+		.demo__container > div {
+			font-size: 2.5vw;
+		}
 }
 
 @media only screen and (max-width: 560px) {
+	.snippets {
+		grid-template-columns: 29vw 29vw 29vw;
+		grid-template-rows: 16vw 16vw 16vw;
+	}
 
+		.snippet__select,
+		.snippet__refresh {
+			font-size: 3.2vw;
+		}
+
+		.snippet__btn {
+			width: 28vw;
+			height: 5vw;
+			font-size: 2.5vw;
+		}
+
+		.snippet__code {
+			height: 85vw;
+			font-size: 2vw;
+			margin-top: 5vw;
+		}
+
+	#container {
+		width: 93vw;
+		margin-top: 5vw;
+	}
 }
-
 
 
 
