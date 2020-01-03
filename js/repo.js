@@ -125,7 +125,7 @@ snippet_repo = [
         isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
           return p.toString() === "[object SafariRemoteNotification]";
         })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification)),
-        isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+        isChrome = window.chrome && !window.opr ? true : false;
         // Safari and Chrome output
         if (isSafari == true) return 'safari';
         else if (isChrome == true) return 'chrome';
